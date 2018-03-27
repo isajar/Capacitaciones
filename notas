@@ -1,0 +1,273 @@
+
+Buenas practicas
+----------------
+nombre de variables compuestos
+	camelcase
+
+nombre de funciones compuestas
+	camelcase
+
+nombre de clases
+	Primera letra en mayuscula
+
+nunca asignar undefined a una variable 
+
+
+
+Tipos de datos
+--------------
+
+Los objetos estan compuestos por propiedades y valores de esas propiedades en la forma de clave valor
+
+	obj = {
+		prp1 : val1,  --> se coloca 'coma' para separar las propiedades.
+		prp2 : val2,  --> no hace falta escribir var (reserva memoria automat)
+		.
+		.
+		.
+		prpn : val n  --> la ultima propiedad no lleva 'coma'.
+	}
+
+Anonimo 
+	
+	Cuando se declara como argumento en una llamada a funcion por ejemplo
+	function myFunction(fn){
+		fn()
+	}
+	myFunction( function(){ accion1 , accion2});
+
+Explicito
+
+	Cuando se declara separado de forma de reservar memoria para el mismo.
+	var fn = function() { accion1, accion2}
+
+
+
+Asignaciones 
+------------
+
+Las asignaciones entre primitivas se pasan por valor. 
+	a=10; b=a; --> idem b.copy(a); diferentes dir de memoria
+Las asignaciones entre objetos se pasan por referencia. 
+	var c { pr1 : val1} var d = c; --> apuntan a la misma direccion
+
+
+Acceso
+------
+
+Para acceder a las propiedades de un objeto se usa la notacion 'punto'.
+Cada punto indica un nivel dentro del objeto
+	obj.pr1 --> 1 nivel
+	obj.pr1.pr1a --> 2 niveles
+Tambien se puede usar corchetes para acceder a un campo especifico
+	var campo = "prp2";
+	obj[campo]; --> idem obj["prp2"];
+
+
+Funciones
+---------
+
+Declaracion: 
+	function myFunction (par1 , par2){}
+
+Las funciones son objetos por lo que tienen las mismas caracteristica
+	myFunction.nombre = "nombre";
+
+
+New
+---
+
+Palabra para reservar espacio en memoria para un objeto
+	
+function Persona(nom,ape){ --> Esta funcion actua como si fuera una clase
+	this.nombre = nom;
+	this.apellido= ape;	 
+}
+
+var isa = new Persona("Isajar","Spector");
+
+Prototipos
+----------
+
+Los prototipos se usan para agregar caracteristicas a las funciones de primera clase
+Su uso principal es para agregar metodos que son comunes a todos los objetos 
+
+Persona.prototype.imprimeInfo = function(){console.log(this.nom + this. ape)}
+
+Esto evita reservar espacio en memora para este metodo cada vez que se instancie un objeto del tipo Persona. 
+En lugar de ello todos los objetos personas referencian al mismo metodo que se almacen una unica vez en 
+memoria
+
+
+typeof & instanceof
+-------------------
+
+Utilizadas para saber el tipo del dato o si este es una instancia de una funcion de primera clase.
+
+typeof 1 --> "number"
+isa instanceof Persona --> true
+
+
+Arguments 
+---------
+Es un prototipo de toda funcion que permite conocer informacion referida a los parametros 
+que se le estan mandando a una funcion.
+
+	function miFuncion(){console.log(arguments)};
+	miFuncion(1,2,3); ---> arguments(3) 0: 1 1: 2 2:3.
+
+Pipe para trabajar con argumentos vacios
+	function foo(nom){ nom = nom || "sin nombre"} --> me dice que si nombre esta vacio asigne el string 
+	"sin nombre" en otro caso asignar a nom lo que viene como argumento.
+
+
+Objeto String 
+-------------
+Los strings son objetos no arreglo de caracteres.
+	var a = "isa"
+	a {
+		0:i,
+		1:s,
+		2:a
+	}
+
+
+Objeto Date
+-----------
+Ver libreria moment.js para manipulacion de fechas. 
+
+
+Regular expression
+-----------------
+Ver documentacion en internet
+
+
+Comentarios y espaciado
+-----------------------
+Ver programa smaller o htmlcompressor.com/compressor para reducir archivos, sacar comentarios y hacer mas dificil la lectura humana (para pasar a produccion) 
+
+
+Manejo de errores
+-----------------
+	try{
+		throw 
+	}
+	catch(e){
+
+	}	
+Lo que se encuentra dentro del try va a ser evaluado.
+En caso de que ocurra un error saltea al catch y podemos recuperrar info del error
+La sentencia throw fuerza la detencion de la ejecucion y saltea directamente al catch generalmente se utiliza como throw new Error('Nombre del error')
+
+
+Funciones especiales Call() Bind() Apply()
+------------------------------------------
+Util para lo que se denomina funciones prestadas, es decir que un objeto pueda usar la funcion definida en otro objeto.
+Ver ejemplo de uso en https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Function/call
+
+
+Json
+----
+Ver herramienta json.parser.online.fr
+
+	JSON.stringify(objetJS) --> pasa a json un obj
+	JSON.parse(jsonString)  --> pasa a obj un json
+
+
+Rotulacion de ciclos
+--------------------
+Se pueden rotular los ciclos esto sirve para tener una referencia a este.
+
+	for_principal:
+		for(...){
+			for_secundario:
+			for(...){... break for_princial} --> este break fuerza la salida de todos los ciclos.
+
+
+Cajas de dialogo
+----------------
+No usar alert, confirm o prompt ya que al ser asincrono js se detiene a la espera de la accion del usuario. Usar librerias como sweet alert o distintos alerts para js.
+
+
+use_strick
+----------
+Para que el copilador se ejecute en modo estricto.
+
+
+Promise y observable
+-------------------
+Los soscriptores a un observable deben generan una promesa. Razon por la cual
+la suscripcion a un observable debe realizarse dentro de una promesa. 
+
+
+Lexical enviorment (ambito de ejecucion)
+------------------
+Donde esta puesto físicamente el codigo (como esta organizada su escritura)
+Cuando el parser lee el codigo decide donde colocar cada parte del mismo y que rodea a esos elementos del codigo. Esto lo hace basandose en el lexical enviorment. 
+
+
+Execution context (contexto de ejecucion)
+-----------------
+Un wrapper que ayuda a manejar el codigo que se esta ejecutando. Existen muchos 'lexical enviorments', cual se esta ejecutando de estos es definido a travez del 'execution context'.
+
+
+Contexto global
+---------------
+El contexto que es visible para todo el codigo. Global significa que no se encuentra dentro de una función. Cuando inicia JavaScript crea dos objetos el global y el objeto this el cual en un primer momento referencial a este objeto global (windows en navegadores). 
+El contexto global queda compuesto por: el objeto global, el objeto this, outer environment y tu codigo.
+
+
+Ejemplo de contextos
+---------------------
+
+var x = 5; // contexto global
+	
+	// contexto local  
+	(function () {  
+	    console.log("x:", x); // no obtenemos 5 sino 'undefined'
+	    var x = 10;
+	    console.log("x:", x); // 10
+	}());
+
+
+Hoisting
+--------
+Este termino refiere a la forma en que se ejecuta el codigo en JS. 'Hoisting'  puede dar a entender que las declaraciones de variables y funciones son físicamente movidas al comienzo del código, pero esto no es lo que ocurre en realidad. 
+JS tiene dos faces en el momento de copilacion:
+	fase 1 (Creacion): Reservar espacio en memoria para variables y funciones. (las variables se le asigna el valor undefinded por defecto y las funciones se colocan enteras en memoria)
+	fase 2 (Ejecucion): El copilador ejecuta linea por linea teniendo en cuenta las variables y funciones que se encuentra en la memoria y el contexto en el que estas se encuentran. 
+
+
+Execution stack (pila de ejecucion)
+-----------------------------------
+
+function b(){		pila de ejecucion	
+}					-----------------
+function a(){		Global context
+	b();			a();
+}				    b();
+a();				
+
+
+Execution (scope) chain (video 14)
+-----------------------
+Basandose en el 'lexical enviorment' JS crea referencia a el 'outer context' el cual queda determinado por el contexto más proximo (el siguiente más abajo en el stack).
+Con esto si JS no encuentra una variable en el contexto actual , lo va a ir a buscar al 'outer context' inmediato y así susesivamente hasta llegar al 'global'. 
+Por lo tanto el 'outer context' depende del 'lexical enviorment', es decir, donde aparece la funcion definida en el codigo determina el 'outer context'.
+El contexto global es 'outer context' por defecto en caso de no haber ninguno.
+
+Ejemplo:
+
+	function b(){
+		console.log(myvar);
+	}
+
+	function a(){
+		var myvar = 2;
+		b();
+	}
+
+	var myvar = 1;
+	a(); // La salida es 1
+
+En ES6 la palabra reservada let indica que la variable vive entre las llaves que la definen (block scope) y no más alla de eso. Es decir un if(){ let a = 1} provoca que a solo exista dentro del if. 
