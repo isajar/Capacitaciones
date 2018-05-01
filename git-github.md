@@ -1,13 +1,13 @@
-##Terminologia
+## Terminologia
 
-###Stage
+### Stage
   Lugar donde podemos confirmar los archivos y carpetas que conformaran el
   commit.
 
-###??
+### ??
   Significa que el archivo no tiene seguimiento
 
-##Comandos CLI
+## Comandos CLI
 
 
 * Inicializar git
