@@ -92,6 +92,6 @@
 
 * Listar archivos para que git ignore
 
-  ..1. Crear /.gitignore
-  ..2. Por linea especificar que archivos se desean ignorar
-  ..3. Si se desear ignorar todo un directorio especificar [nombre_directorio/]
+  1. Crear /.gitignore
+  2. Por linea especificar que archivos se desean ignorar
+  3. Si se desear ignorar todo un directorio especificar [nombre_directorio/]
