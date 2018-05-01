@@ -271,3 +271,14 @@ Ejemplo:
 	a(); // La salida es 1
 
 En ES6 la palabra reservada let indica que la variable vive entre las llaves que la definen (block scope) y no más alla de eso. Es decir un if(){ let a = 1} provoca que a solo exista dentro del if. 
+
+
+Pila de eventos y pila de ejecucion
+-----------------------------------
+JS lleva dos pilas para mantener el orden de ejecucion de las funciones. Todos los eventos sincronos se ponen en una pila de ejecucion y todos los asincronos se meten en una pila de eventos
+La pila de eventos no se ejecuta hasta que la pila de ejecucion no este vacia.
+Es decir primero el copilador recorre toda la pila de ejecucion, una vez que esta vacia recorre la pila de eventos.
+
+Ejemplo:
+Pila ejecucion: a() ; b() ; c()
+Pila de eventos: Http ; Click ; Timer
