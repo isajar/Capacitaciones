@@ -4,8 +4,21 @@
   Lugar donde podemos confirmar los archivos y carpetas que conformaran el
   commit.
 
+
 ### ??
   Significa que el archivo no tiene seguimiento
+
+
+### Merge
+* Tipos:
+  * fast-forward: No hay cambios en la rama principal lo que permite que los
+  cambios hechos en el branch se integren al master de manera transparente
+  * Uniones automaticas: Hubo modificaciones en el master pero que no afectan el
+  branch, permitiendo unir ambas
+  * Manuales: Hubo modificaciones en el master y en el branch que son incompatibles
+  como por ejemplo modifcaciones de los mismos archivos. En este caso se resuelve
+  de manera manual.
+
 
 ## Comandos CLI
 
@@ -95,3 +108,15 @@
   1. Crear /.gitignore
   2. Por linea especificar que archivos se desean ignorar
   3. Si se desear ignorar todo un directorio especificar [nombre_directorio/]
+
+* Branches
+
+  `git branch [nombre de la rama]` *para crear una nueva rama*
+
+  `git checkout [rama]` *para moverse a la rama*
+
+  `git diff [rama1] [rama2]` *para ver las diferencias entre ramas*
+
+  `git merge [rama]` *hace una union entre la rama y el master*
+
+  `git branch -d [rama]` *elimina la rama*
