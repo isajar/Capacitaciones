@@ -9,6 +9,10 @@
   Significa que el archivo no tiene seguimiento
 
 
+### Master
+  Nombre de la rama principal
+
+
 ### Merge
 * Tipos:
   * fast-forward: No hay cambios en la rama principal lo que permite que los
@@ -18,6 +22,26 @@
   * Manuales: Hubo modificaciones en el master y en el branch que son incompatibles
   como por ejemplo modifcaciones de los mismos archivos. En este caso se resuelve
   de manera manual.
+
+
+### Tags
+  Son etiquetas , generalmente se usan para resumir toda la historia hasta el
+  momento. Es muy usada en releases, lo que nos permite descargar todo el
+  proyecto hasta ese punto.
+
+
+### Stash
+  Imaginemos el stash como un baul de los recuerdos donde guardamos el estado actual
+  de la rama con los cambios sin seguimiento. Entonces nos queda la rama limpia luego
+  del stash (descarta todos los cambios desde el ultimo commit). Esto es usado
+  cuando tenemos que hacer cambios de emergencia pero no queremos
+  perder los cambios que veniamos haciendo, entonces guardamos en el stash y luego
+  recuperamos.
+  La pila del stash es LIFO
+
+
+### Rebasing
+  Accion para acomodar commits (ordenarlos, fusionarlos , entre otros)
 
 
 ## Comandos CLI
@@ -120,3 +144,25 @@
   `git merge [rama]` *hace una union entre la rama y el master*
 
   `git branch -d [rama]` *elimina la rama*
+
+  `git checkout -b [rama]` *crea una rama y se mueve automaticamente a ella*
+
+* Tags
+
+  `git tag -a [nombre_del_tag] -m ["Mensaje"]` *crea un nuevo tag acompañado del msj*
+
+* Stashing
+
+  `git stash save [mensaje]` *crea un nuevo stash con el mensaje*
+
+  `git stash list` *lista todos los stash*
+
+  `git stash pop` *extrae el ultimo stash del stack de stashes*
+
+  `git stash save --kep-index` *guarda todo menos lo que se encuentra en el stage*
+
+  `git stash save --include-untracked` *guarda todo incluso los q no tiene seguimiento*
+
+  `git show stash` *muestra info del ultimo stash*
+
+  * Rebase
