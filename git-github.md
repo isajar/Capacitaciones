@@ -41,10 +41,23 @@
 
 
 ### Rebasing
-  Accion para acomodar commits (ordenarlos, fusionarlos , entre otros)
+  Accion para acomodar commits (ordenarlos, fusionarlos , entre otros).
+  Util para actualizar una rama con los commits de otra rama
+#### Rebase interactivo uso:
+* Ordenar commits
+* Corregir mensajes de commits (reword)
+* Unir commits (squash)
+* Separar commits (edit)
 
 
-## Comandos CLI
+## Buenas practicas
+
+* Hacer fetch y pull antes de hacer push
+
+* Anres de comenzar a trabajar hacer un fetch y un status para comparar con el remoto
+
+
+## Comandos CLI Git
 
 
 * Inicializar git
@@ -77,7 +90,7 @@
 
   `git status -sb` *adiciona nombre de branch actual*
 
-* Agregar archivos al stage
+* Agregar archivos al stageciencia y tecnica parana
 
   `git add [archivo] [.]`  *El punto agrega todos los archivos del directorio*
 
@@ -165,4 +178,27 @@
 
   `git show stash` *muestra info del ultimo stash*
 
-  * Rebase
+* Rebase
+
+  `git rebase [nombre_rama]` *Se le adicionan a la rama actual los commits de la rama especificada*
+
+  `git rebase -i` *entra en modo edicion interactiva con varias opciones. Ver usos rebase*
+
+
+## Comandos CLI GitHub
+
+* Inicialiacion
+
+  `git remote add [nombre_origen] [link_repo]` *agrega nombre_origen como repo remoto al proyecto*
+
+  `git push -u origin master` *sube todo el origen al master remoto. -u deja master por defecto*
+
+  `git push --tags` *sube los tags del origen al remoto*
+
+  `git remote -v` *muestra el origen para hacer push y fetch*
+
+  `git clone [url_origen] <nombre_destino>` *clona un repositorio y renombra el root con nombre_dest*
+
+  `git fetch [origen] [remoto]` *descarga los cambios de remoto sin hacer el merge*
+
+  `git pull [origen] [remoto]` *descarga los cambios de remoto y hace el merge*
